@@ -2,26 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ACR 2026 Poster</title>
-<style>
-  html, body { margin:0; background:#fff; }
-  img { display:block; width:100%; height:auto; }
-</style>
+<meta http-equiv="refresh" content="0; url=ACR2026_IIM_RTX_poster.png">
+<script>location.replace("ACR2026_IIM_RTX_poster.png");</script>
 </head>
-<body>
-<img src="ACR2026_IIM_RTX_poster.png" alt="ACR 2026 poster" width="8400" height="5400">
-<script>
-fetch("ACR2026_IIM_RTX_poster.png").then(function (r) { return r.blob(); }).then(function (blob) {
-  var url = URL.createObjectURL(blob);
-  var a = document.createElement("a");
-  a.href = url;
-  a.download = "ACR2026_IIM_RTX_poster.png";
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-  setTimeout(function () { URL.revokeObjectURL(url); }, 60000);
-});
-</script>
-</body>
+<body></body>
 </html>
