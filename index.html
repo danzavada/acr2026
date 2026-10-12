@@ -3,111 +3,25 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ACR 2026 Poster – RTX in IIM</title>
-<meta name="description" content="Long-Term Efficacy of Rituximab in Idiopathic Inflammatory Myopathies Refractory to csDMARDs – ACR Convergence 2026 poster (Zavada et al., Institute of Rheumatology, Prague)">
+<title>ACR 2026 Poster</title>
 <style>
-  :root { --blue:#1d5ba6; --bg:#f4f6f9; --fg:#1b2430; --muted:#5b6675; --ok:#1e7d43; --card:#fff; }
-  @media (prefers-color-scheme: dark) { :root { --bg:#10151c; --fg:#e6ebf1; --muted:#9aa6b4; --card:#19212b; --ok:#4cc27a; } }
-  * { box-sizing:border-box; }
-  body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; background:var(--bg); color:var(--fg); }
-  header { background:var(--blue); color:#fff; padding:20px 16px; }
-  header h1 { margin:0 auto; max-width:900px; font-size:1.15rem; line-height:1.35; }
-  header p { margin:6px auto 0; max-width:900px; font-size:.9rem; opacity:.85; }
-  main { max-width:900px; margin:0 auto; padding:16px; }
-  #status { background:var(--card); border-radius:10px; padding:14px 16px; font-size:.95rem; box-shadow:0 1px 3px rgba(0,0,0,.08); }
-  #status.ok { border-left:4px solid var(--ok); }
-  #log { margin:8px 0 0; padding:0; list-style:none; font:12px/1.5 ui-monospace,Menlo,monospace; color:var(--muted); }
-  .actions { display:flex; flex-wrap:wrap; gap:10px; margin:16px 0; }
-  .btn { flex:1 1 180px; display:inline-block; text-align:center; padding:12px 16px; border-radius:8px; border:0; font-size:1rem; font-weight:600; text-decoration:none; cursor:pointer; background:var(--blue); color:#fff; }
-  .btn.secondary { background:transparent; color:var(--blue); border:2px solid var(--blue); }
-  @media (prefers-color-scheme: dark) { .btn.secondary { color:#8db8ee; border-color:#8db8ee; } }
-  #share[hidden] { display:none; }
-  figure { margin:0; }
-  figure img { width:100%; height:auto; display:block; border-radius:6px; box-shadow:0 1px 4px rgba(0,0,0,.15); }
-  figcaption { font-size:.85rem; color:var(--muted); margin-top:8px; }
-  footer { max-width:900px; margin:0 auto; padding:8px 16px 32px; font-size:.85rem; color:var(--muted); }
-  footer a { color:inherit; }
+  html, body { margin:0; background:#fff; }
+  img { display:block; width:100%; height:auto; }
 </style>
 </head>
 <body>
-<header>
-  <h1>Long-Term Efficacy of Rituximab in Idiopathic Inflammatory Myopathies Refractory to csDMARDs</h1>
-  <p>ACR Convergence 2026 · Zavada D. et al. · Institute of Rheumatology, Prague</p>
-</header>
-<main>
-  <div id="status" role="status" aria-live="polite">Downloading poster…</div>
-  <ul id="log"></ul>
-  <div class="actions">
-    <button id="share" class="btn" type="button" hidden>Save to Photos / Share</button>
-    <a id="dl" class="btn secondary" href="ACR2026_IIM_RTX_poster.png" download="ACR2026_IIM_RTX_poster.png">Download PNG</a>
-    <a class="btn secondary" href="ACR2026_IIM_RTX_poster.pdf" download>Download PDF</a>
-  </div>
-  <figure>
-    <a href="ACR2026_IIM_RTX_poster.png"><img src="ACR2026_IIM_RTX_poster.png" alt="ACR 2026 poster: Long-Term Efficacy of Rituximab in Idiopathic Inflammatory Myopathies Refractory to csDMARDs" width="8400" height="5400"></a>
-    <figcaption>Tip: on a phone, long-press the poster and choose “Save to Photos” / “Download image”.</figcaption>
-  </figure>
-</main>
-<footer>Contact: <a href="mailto:zavadad@revma.cz">zavadad@revma.cz</a> · <a href="https://www.revma.cz">www.revma.cz</a></footer>
+<img src="ACR2026_IIM_RTX_poster.png" alt="ACR 2026 poster" width="8400" height="5400">
 <script>
-(function () {
-  var FILE = "ACR2026_IIM_RTX_poster.png";
-  var statusEl = document.getElementById("status");
-  var logEl = document.getElementById("log");
-  var shareBtn = document.getElementById("share");
-  var posterFile = null;
-
-  function log(msg) {
-    var t = new Date().toLocaleTimeString();
-    console.log("[poster] " + msg);
-    var li = document.createElement("li");
-    li.textContent = t + "  " + msg;
-    logEl.appendChild(li);
-  }
-
-  function setStatus(msg, ok) {
-    statusEl.textContent = msg;
-    statusEl.className = ok ? "ok" : "";
-  }
-
-  log("Page opened, fetching " + FILE);
-  fetch(FILE, { cache: "no-cache" })
-    .then(function (r) {
-      if (!r.ok) throw new Error("HTTP " + r.status);
-      return r.blob();
-    })
-    .then(function (blob) {
-      var mb = (blob.size / 1048576).toFixed(1);
-      log("Fetched " + FILE + " (" + mb + " MB)");
-      posterFile = new File([blob], FILE, { type: "image/png" });
-
-      var url = URL.createObjectURL(blob);
-      var a = document.createElement("a");
-      a.href = url;
-      a.download = FILE;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      setTimeout(function () { URL.revokeObjectURL(url); }, 60000);
-      log("Download triggered: " + FILE);
-      setStatus("✓ Poster downloaded (" + FILE + ", " + mb + " MB). Check your Downloads / Files.", true);
-
-      if (navigator.canShare && navigator.canShare({ files: [posterFile] })) {
-        shareBtn.hidden = false;
-        log("Share sheet available – use “Save to Photos” to add it to your gallery");
-      }
-    })
-    .catch(function (e) {
-      log("Automatic download failed: " + e.message);
-      setStatus("Automatic download didn’t start – use the buttons below.", false);
-    });
-
-  shareBtn.addEventListener("click", function () {
-    if (!posterFile) return;
-    navigator.share({ files: [posterFile], title: "ACR 2026 poster – RTX in IIM" })
-      .then(function () { log("Shared / saved via share sheet"); })
-      .catch(function (e) { log("Share cancelled: " + e.message); });
-  });
-})();
+fetch("ACR2026_IIM_RTX_poster.png").then(function (r) { return r.blob(); }).then(function (blob) {
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement("a");
+  a.href = url;
+  a.download = "ACR2026_IIM_RTX_poster.png";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(function () { URL.revokeObjectURL(url); }, 60000);
+});
 </script>
 </body>
 </html>
